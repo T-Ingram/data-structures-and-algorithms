@@ -52,7 +52,14 @@ For example, twoToThe([1,2,3]) returns [2,4,8] because 2 ^ 1 = 2, 2 ^ 2 = 4, and
 ------------------------------------------------------------------------------------------------ */
 
 const forLoopTwoToThe = (arr) => {
-  // Solution code here...
+  const resultArray = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const twoToThePower = Math.pow(2, arr[i]);
+    resultArray.push(twoToThePower);
+  }
+
+  return resultArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -62,7 +69,14 @@ Write a function named forEachTwoToThe that produces the same output as your for
 ------------------------------------------------------------------------------------------------ */
 
 const forEachTwoToThe = (arr) => {
-  // Solution code here...
+  const resultArray = [];
+
+  arr.forEach((element) => {
+    const twoToThePower = Math.pow(2, element);
+    resultArray.push(twoToThePower);
+  });
+
+  return resultArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -225,7 +239,7 @@ describe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return two raised to the power of the integer', () => {
     expect(forLoopTwoToThe([0, 4, 5])).toStrictEqual([1, 16, 32]);
     expect(forLoopTwoToThe([0, 4, 5]).length).toStrictEqual(3);
@@ -236,7 +250,7 @@ xdescribe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should return two raised to the power of the integer', () => {
     expect(forEachTwoToThe([0, 4, 5])).toStrictEqual([1, 16, 32]);
     expect(forEachTwoToThe([0, 4, 5]).length).toStrictEqual(3);
