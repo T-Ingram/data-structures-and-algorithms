@@ -26,7 +26,9 @@ For example:
 return: 23
 ------------------------------------------------------------------------------------------------ */
 const findMax = (matrix) => {
-  // Solution code here...
+  const flattenedArray = matrix.reduce((acc, row) => acc.concat(row), []);
+
+  return Math.max(...flattenedArray);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -223,7 +225,7 @@ describe('Testing challenge 1', () => {
   });
 });
 
-xdescribe('Testing challenge 2', () => {
+describe('Testing challenge 2', () => {
   test('It should return the max value', () => {
     expect(findMax([[13,24,24,2], [2,5,6], [2,3]])).toStrictEqual(24);
   });
