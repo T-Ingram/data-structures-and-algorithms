@@ -90,8 +90,18 @@ Here is sample data for the 9:00 sales: { sales: '88 cookies', time: '9 a.m.' }.
 Write a function named salesData that uses forEach to iterate over the hourlySales array and create an object for each hour. Return an array of the formatted data.
 ------------------------------------------------------------------------------------------------ */
 
-const salesData = (hours, data) => {
-  // Solution code here...
+const salesData = (stores, data) => {
+  const formattedData = [];
+
+  stores.forEach((store) => {
+    const storeData = {};
+    data.forEach((hourData, index) => {
+      storeData[hourData.time] = hourData.sales.replace(/ cookies$/, '');
+    });
+    formattedData.push({ store, data: storeData });
+  });
+
+  return formattedData;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -116,7 +126,16 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  let treatsQuantity = 0;
+  arr.forEach(store => {
+    if (store.store === 'Pet store') {
+      const treatsItem = store.items.find(item => item.name === 'Treats');
+      if (treatsItem) {
+        treatsQuantity += treatsItem.quantity;
+      }
+    }
+  });
+  return treatsQuantity;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -247,7 +266,7 @@ describe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should create an object of data for each store', () => {
     expect(salesData(hoursOpen, grandTotal(cookieStores))).toStrictEqual([
       { sales: '88 cookies', time: '9 a.m.' },
@@ -268,7 +287,7 @@ xdescribe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should return the number 24', () => {
     expect(howManyTreats(errands)).toStrictEqual(24);
   });
